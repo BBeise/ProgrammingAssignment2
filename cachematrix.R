@@ -1,7 +1,5 @@
-cachematrix<-function(x=matrix()){
-# input x will be an inversible matrix
 # first function creates the special object that contains the functions to cache the inverse
-  makeCacheMatrix <- function(x) {
+  makeCacheMatrix <- function(x=matrix()) {
     mi <- NULL    
     #  mi is the 'inverse' and it's reset to NULL every time makeCacheMatrix is called
     
@@ -21,10 +19,10 @@ cachematrix<-function(x=matrix()){
     getinverse <- function() { mi }   
     
     # this is the list of methods that is the output object of makeCacheMatrix
-    output<-list(set=set, get = get, setinverse = setinverse, getinverse = getinverse)
+    list(set=set, get = get, setinverse = setinverse, getinverse = getinverse)
   }
 # second function computes or fetches the inverse
-  cacheSolve <- function(output, ...) {
+  cacheSolve <- function(x, ...) {
     # accesses the object 'x' created by makeCacheMatrix and gets the value of the inverse
     mi <- x$getinverse()
     # if inverse was already cached (not NULL) ...
@@ -42,4 +40,3 @@ cachematrix<-function(x=matrix()){
     # and return the inverse to the code that called this function
     mi               
   }
-}
